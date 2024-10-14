@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+</head>
+<body>
+    <h1>Добро пожаловать, <span th:text="${username}"> USERNAME></span> !</h1>
+    <h1> </h1>
+    <button><a href="/public-data">Публичная страница (для всех авторизированных пользователей)</a></button>
+    <h3></h3>
+    <button><a href="/private-data">Приватная страница (для администраторов) </a></button>
+    <h3></h3>
+    <button><a href="/logout">Разлогиниться</a></button>
+</body>
+</html>

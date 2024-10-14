@@ -20,11 +20,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/private-data").hasRole("ADMIN");
                     auth.requestMatchers("/public-data").hasAnyRole("USER", "ADMIN");
-                    auth.anyRequest().permitAll();
+                    auth.anyRequest().authenticated();
                 })
                 .formLogin(login -> login
                         .loginPage("/login")
-                        .defaultSuccessUrl("/public-data")
+                        .defaultSuccessUrl("/welcome-page")
                         .permitAll()
                 )
                 .logout(logout -> logout
@@ -46,7 +46,7 @@ public class SecurityConfig {
                 http.getSharedObject(AuthenticationManagerBuilder.class);
         authenticationManagerBuilder
                 .inMemoryAuthentication()
-                .withUser("user").password(passwordEncoder().encode("password")).roles("USER")
+                .withUser("user").password(passwordEncoder().encode("user")).roles("USER")
                 .and()
                 .withUser("admin").password(passwordEncoder().encode("admin")).roles("ADMIN");
         return authenticationManagerBuilder.build();

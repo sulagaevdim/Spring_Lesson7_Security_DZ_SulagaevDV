@@ -11,13 +11,13 @@ public class UserController {
     @GetMapping("/public-data")
     @ResponseBody
     public String getPublicData() {
-        return "Доступ к общедоступным данным.";
+        return "Публичная страница (для всех авторизованных пользователей)";
     }
 
     @GetMapping("/private-data")
     @ResponseBody
     public String getPrivateData() {
-        return "Доступ к приватным данным только для ADMIN.";
+        return "Закрытая страница (только для администраторов)";
     }
 
     @GetMapping("/login")

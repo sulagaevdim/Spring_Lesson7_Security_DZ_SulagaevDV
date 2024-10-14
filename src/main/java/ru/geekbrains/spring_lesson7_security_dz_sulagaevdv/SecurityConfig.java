@@ -19,7 +19,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/private-data").hasRole("ADMIN");
-                    auth.requestMatchers("/public-data").authenticated();
+                    auth.requestMatchers("/public-data").hasAnyRole("USER", "ADMIN");
                     auth.anyRequest().permitAll();
                 })
                 .formLogin(login -> login
@@ -29,7 +29,7 @@ public class SecurityConfig {
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login?logout")
+                        .logoutSuccessUrl("/login")
                         .permitAll()
                 )
                 .exceptionHandling(ex -> ex
